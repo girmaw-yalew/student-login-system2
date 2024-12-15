@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System with Student Data</title>
+    <style>
+        /* CSS styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container, .student-data-container {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #error-message {
+            color: red;
+            display: none;
+        }
+
+        .student-info {
+            margin-top: 20px;
+        }
+
+        .student-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .student-info th, .student-info td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .student-info th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container" id="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter Username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter Password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p id="error-message">Invalid username or password</p>
+        </form>
+    </div>
+
+    <!-- This section will show after successful login -->
+    <div class="student-data-container" id="student-data-container" style="display: none;">
+        <h2>Welcome to Student Data</h2>
+        <div class="student-info">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Roll Number</th>
+                    <th>Marks</th>
+                </tr>
+                <!-- Example student data, can be dynamically added via JS -->
+                <tr>
+                    <td>Alice</td>
+                    <td>101</td>
+                    <td>85</td>
+                </tr>
+                <tr>
+                    <td>Bob</td>
+                    <td>102</td>
+                    <td>90</td>
+                </tr>
+                <tr>
+                    <td>Charlie</td>
+                    <td>103</td>
+                    <td>78</td>
+                </tr>
+            </table>
+        </div>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        // JavaScript functionality
+        const validUsername = "admin";
+        const validPassword = "password123";
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the entered username and password
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Validate credentials
+            if (username === validUsername && password === validPassword) {
+                // Hide login form and show student data
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('student-data-container').style.display = 'block';
+            } else {
+                // Show error message
+                document.getElementById('error-message').style.display = 'block';
+            }
+        });
+
+        function logout() {
+            // Hide student data and show login form
+            document.getElementById('student-data-container').style.display = 'none';
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('error-message').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
